@@ -104,7 +104,7 @@
             Form1.bepininstaller.Enabled = True
         End If
     End Function
-    Public Function checkfolders(foldernames As String, modfoldvar As Boolean)
+    Public Function checkfolders(foldernames As String)
         ' convert string to array
         Dim foldernamesarray As String() = foldernames.Split(vbCrLf)
         Dim data As Boolean = False
@@ -122,7 +122,7 @@
             ElseIf foldername = "Mono Runtime" Then
                 mono = True
             ElseIf foldername = "Modman" Then
-                modfoldvar = True
+                Form1.modfolder = True
             End If
         Next
         If data = True AndAlso mono = True Then
