@@ -60,10 +60,12 @@
             End If
         Next
         If lethal = True AndAlso dlss = True AndAlso nvunity = True AndAlso crashhandler = True AndAlso playback = True Then
-            Form1.basegame.Checked = True
+            Return True
         Else
             Form1.Button1.Enabled = True
             Form1.Button2.Enabled = True
+            MessageBox.Show("Couldn't find the base game files, did you select the right folder?")
+            Return False
         End If
     End Function
     Public Function bepinexdetect(filenames As String, foldernames As String)
@@ -72,6 +74,11 @@
         Dim bepinex As Boolean = False
         Dim filenamesarray As String() = filenames.Split(vbCrLf)
         For Each filename In filenamesarray
+            filename = filename.Replace(vbCrLf, "")
+            filename = filename.Trim()
+            filename = filename.TrimStart()
+            filename = filename.TrimEnd()
+            MessageBox.Show(filename)
             If filename = "Unity Doorstop" Then
                 doorstop = True
             End If
@@ -81,6 +88,11 @@
         Next
         Dim foldernamesarray As String() = foldernames.Split(vbCrLf)
         For Each foldername In foldernamesarray
+            foldername = foldername.Replace(vbCrLf, "")
+            foldername = foldername.Trim()
+            foldername = foldername.TrimStart()
+            foldername = foldername.TrimEnd()
+            MessageBox.Show(foldername)
             If foldername = "BepInEx" Then
                 bepinex = True
             End If

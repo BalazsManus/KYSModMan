@@ -21,7 +21,9 @@
                     filenames = filenames + Struct.detectfile(filname, folder) + vbCrLf
                 Next
                 MessageBox.Show(filenames)
-                Struct.checkfiles(filenames)
+                If Struct.checkfiles(filenames) = False Then
+                    Exit Sub
+                End If
                 Dim folders As String() = IO.Directory.GetDirectories(folder)
                 Dim foldnames As String
                 For Each foldname In folders
