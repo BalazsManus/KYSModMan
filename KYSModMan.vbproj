@@ -206,5 +206,8 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dfyz0yj-fd9b7f1a-4bec-40ea-a100-2470245723f4.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
