@@ -99,6 +99,7 @@
         Next
         If doorstop = True AndAlso doorstopproxy = True AndAlso bepinex = True Then
             Form1.BepInExStatus.Checked = True
+            Form1.Button4.PerformClick()
         Else
             Form1.bepininstaller.Visible = True
             Form1.bepininstaller.Enabled = True

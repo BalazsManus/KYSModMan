@@ -8,7 +8,7 @@ Public Class Form1
     Dim pluginsfolder As String()
     Dim pluginsdirfolder As String()
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        MessageBox.Show("The original steam location will be used, you may have to click only ok.")
+        MessageBox.Show("If you use the default location in steam and also installed lethal from steam, press enter 2 times.")
         Dim fbd As New FolderBrowserDialog
         fbd.SelectedPath = "C:\Program Files (x86)\Steam\steamapps\common\Lethal Company"
         If fbd.ShowDialog() = DialogResult.OK Then
@@ -95,6 +95,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        modsList.Items.Clear()
         Dim path As String = lethalpath + "\BepInEx\plugins"
         pluginsfolder = IO.Directory.GetFiles(path)
         For Each file In pluginsfolder
@@ -106,7 +107,12 @@ Public Class Form1
         pluginsdirfolder = IO.Directory.GetDirectories(path)
         For Each directory In pluginsdirfolder
             Dim topology As String() = IO.Directory.GetFiles(directory)
+            Dim filelist As String
             For Each file In topology
+                Dim filename As String = file
+                filename = filename.Replace(path + "\", "")
+                filename = filename.Trim
+                filelist = filelist + filename + vbCrLf
                 If file.EndsWith(".dll") Then
                     file = file.Replace(directory + "\", "")
                     file = file.Replace(".dll", "")
@@ -117,10 +123,31 @@ Public Class Form1
                     Continue For
                 End If
             Next
+            Dim filelistarray As String()
+            If filelist = Nothing Then
+                Continue For
+            Else
+                filelistarray = filelist.Split(vbCrLf)
+            End If
+            Dim dllfound As Boolean = False
+            For Each file In filelistarray
+                If file.Contains(".dll") Then
+                    dllfound = True
+                End If
+            Next
+            If dllfound = False Then
+                Dim dirname As String = directory
+                dirname = directory.Replace(path + "\", "")
+                Dim nodename As String = "?" + dirname
+                If modsList.Items.Contains(nodename) = False Then
+                    modsList.Items.Add(nodename)
+                End If
+            End If
         Next
     End Sub
 
     Private Sub modsList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles modsList.SelectedIndexChanged
+        Button6.Enabled = True
         selected.Text = modsList.SelectedItem.ToString
         ' try to locate file
         Dim path As String = lethalpath + "\BepInEx\plugins"
@@ -157,5 +184,65 @@ Public Class Form1
                 Next
             Next
         End If
+        If found = False Then
+            Dim folder As String = selected.Text.Replace("?", "")
+            folder = lethalpath + "\BepInEx\plugins\" + folder + "\"
+            folder = folder.Replace(path, "")
+            fileloc.Text = "Loc: " + folder
+        End If
+        If selected.Text.StartsWith("*") Then
+            filetype.Text = "Type: Plugin in folder"
+        ElseIf selected.Text.StartsWith("?") Then
+            filetype.Text = "Type: Folder"
+        Else
+            filetype.Text = "Type: Plugin"
+        End If
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Button6.Enabled = False
+        Dim folderfix As Boolean = False
+        Dim nodllfix As Boolean = False
+        If selected.Text.StartsWith("*") Then
+            folderfix = True
+        End If
+        If selected.Text.StartsWith("?") Then
+            nodllfix = True
+        End If
+        Dim path As String = lethalpath + "\BepInEx\plugins"
+        If folderfix = False AndAlso nodllfix = False Then
+            IO.File.Delete(path + "\" + selected.Text + ".dll")
+            If IO.Directory.Exists(path + "\" + selected.Text) Then
+                IO.Directory.Delete(path + "\" + selected.Text, True)
+            End If
+        ElseIf folderfix = True AndAlso nodllfix = False Then
+            For Each directory In pluginsdirfolder
+                Dim topology As String() = IO.Directory.GetFiles(directory)
+                For Each file In topology
+                    Dim fileorig As String = file
+                    fileorig = fileorig.Replace(directory, "")
+                    If file.EndsWith(".dll") Then
+                        Dim found As Boolean = False
+                        file = file.Replace(directory + "\", "")
+                        file = file.Replace(".dll", "")
+                        file = file.Trim
+                        If "*" + file = modsList.SelectedItem.ToString Then
+                            found = True
+                        End If
+                        If found = True Then
+                            IO.Directory.Delete(directory, True)
+                        End If
+                    Else
+                        Continue For
+                    End If
+                Next
+            Next
+        ElseIf folderfix = False AndAlso nodllfix = True Then
+            Dim foldername As String = selected.Text.Replace("?", "")
+            foldername = lethalpath + "\BepInEx\plugins\" + foldername
+            IO.Directory.Delete(foldername, True)
+        End If
+        Button6.Enabled = True
+        Button4.PerformClick()
     End Sub
 End Class

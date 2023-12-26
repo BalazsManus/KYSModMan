@@ -48,6 +48,7 @@ Partial Class Form1
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.filetype = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -70,9 +71,9 @@ Partial Class Form1
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(223, 15)
+        Me.Label1.Size = New System.Drawing.Size(127, 15)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Step 1: open ""Lethal Company"" folder"
+        Me.Label1.Text = "Directory Management" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'BepInExStatus
         '
@@ -155,7 +156,7 @@ Partial Class Form1
         '
         Me.bepininstaller.Enabled = False
         Me.bepininstaller.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.bepininstaller.Location = New System.Drawing.Point(135, 29)
+        Me.bepininstaller.Location = New System.Drawing.Point(132, 27)
         Me.bepininstaller.Name = "bepininstaller"
         Me.bepininstaller.Size = New System.Drawing.Size(116, 27)
         Me.bepininstaller.TabIndex = 10
@@ -250,37 +251,37 @@ Partial Class Form1
         Me.modsList.ItemHeight = 15
         Me.modsList.Location = New System.Drawing.Point(6, 19)
         Me.modsList.Name = "modsList"
-        Me.modsList.Size = New System.Drawing.Size(596, 330)
+        Me.modsList.Size = New System.Drawing.Size(449, 330)
         Me.modsList.TabIndex = 0
         '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel3.Controls.Add(Me.filetype)
         Me.Panel3.Controls.Add(Me.Label7)
         Me.Panel3.Controls.Add(Me.Button7)
         Me.Panel3.Controls.Add(Me.Button6)
         Me.Panel3.Controls.Add(Me.fileloc)
         Me.Panel3.Controls.Add(Me.selected)
-        Me.Panel3.Location = New System.Drawing.Point(390, 115)
+        Me.Panel3.Location = New System.Drawing.Point(473, 115)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(398, 272)
+        Me.Panel3.Size = New System.Drawing.Size(315, 272)
         Me.Panel3.TabIndex = 1
         '
         'selected
         '
-        Me.selected.AutoSize = True
         Me.selected.Location = New System.Drawing.Point(3, 0)
         Me.selected.Name = "selected"
-        Me.selected.Size = New System.Drawing.Size(91, 15)
+        Me.selected.Size = New System.Drawing.Size(305, 57)
         Me.selected.TabIndex = 0
         Me.selected.Text = "Select an item"
         '
         'fileloc
         '
-        Me.fileloc.Location = New System.Drawing.Point(25, 15)
+        Me.fileloc.Location = New System.Drawing.Point(25, 57)
         Me.fileloc.Name = "fileloc"
-        Me.fileloc.Size = New System.Drawing.Size(366, 46)
+        Me.fileloc.Size = New System.Drawing.Size(283, 64)
         Me.fileloc.TabIndex = 1
         Me.fileloc.Text = "Loc: N/A"
         '
@@ -296,20 +297,22 @@ Partial Class Form1
         '
         'Button6
         '
+        Me.Button6.Enabled = False
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button6.Location = New System.Drawing.Point(28, 64)
+        Me.Button6.Location = New System.Drawing.Point(174, 227)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(147, 23)
+        Me.Button6.Size = New System.Drawing.Size(134, 23)
         Me.Button6.TabIndex = 2
         Me.Button6.Text = "Delete (Permanent)"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'Button7
         '
+        Me.Button7.Enabled = False
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button7.Location = New System.Drawing.Point(28, 93)
+        Me.Button7.Location = New System.Drawing.Point(3, 227)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(147, 23)
+        Me.Button7.Size = New System.Drawing.Size(170, 23)
         Me.Button7.TabIndex = 3
         Me.Button7.Text = "Disable"
         Me.Button7.UseVisualStyleBackColor = True
@@ -343,6 +346,15 @@ Partial Class Form1
         Me.Label7.Size = New System.Drawing.Size(157, 15)
         Me.Label7.TabIndex = 4
         Me.Label7.Text = "Kill Yourself Mod Manager"
+        '
+        'filetype
+        '
+        Me.filetype.AutoSize = True
+        Me.filetype.Location = New System.Drawing.Point(25, 121)
+        Me.filetype.Name = "filetype"
+        Me.filetype.Size = New System.Drawing.Size(61, 15)
+        Me.filetype.TabIndex = 5
+        Me.filetype.Text = "Type: N/A"
         '
         'Form1
         '
@@ -409,4 +421,5 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents filetype As Label
 End Class
