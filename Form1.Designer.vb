@@ -53,6 +53,7 @@ Partial Class Form1
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Button8 = New System.Windows.Forms.Button()
+        Me.disabledstatus = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -284,6 +285,7 @@ Partial Class Form1
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel3.Controls.Add(Me.disabledstatus)
         Me.Panel3.Controls.Add(Me.Button8)
         Me.Panel3.Controls.Add(Me.filetype)
         Me.Panel3.Controls.Add(Me.Label7)
@@ -393,6 +395,15 @@ Partial Class Form1
         Me.Button8.Text = "Enable"
         Me.Button8.UseVisualStyleBackColor = True
         '
+        'disabledstatus
+        '
+        Me.disabledstatus.AutoSize = True
+        Me.disabledstatus.Location = New System.Drawing.Point(25, 145)
+        Me.disabledstatus.Name = "disabledstatus"
+        Me.disabledstatus.Size = New System.Drawing.Size(85, 15)
+        Me.disabledstatus.TabIndex = 7
+        Me.disabledstatus.Text = "Disabled: N/A"
+        '
         'Form1
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -463,4 +474,5 @@ Partial Class Form1
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Label8 As Label
     Friend WithEvents Button8 As Button
+    Friend WithEvents disabledstatus As Label
 End Class

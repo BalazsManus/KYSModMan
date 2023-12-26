@@ -7,6 +7,8 @@ Public Class Form1
     Public modfolder As Boolean = False
     Dim pluginsfolder As String()
     Dim pluginsdirfolder As String()
+    Dim disabledfolder As String()
+    Dim disableddirfolder As String()
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         MessageBox.Show("If you use the default location in steam and also installed lethal from steam, press enter 2 times.")
         Dim fbd As New FolderBrowserDialog
@@ -97,6 +99,8 @@ Public Class Form1
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         modsList.Items.Clear()
         Dim path As String = lethalpath + "\BepInEx\plugins"
+        Dim disabledpath As String = lethalpath + "\KYSModMan\Disabled"
+#Region "normal check"
         pluginsfolder = IO.Directory.GetFiles(path)
         For Each file In pluginsfolder
             file = file.Replace(path + "\", "")
@@ -144,12 +148,68 @@ Public Class Form1
                 End If
             End If
         Next
+#End Region
+#Region "disabled check"
+        disabledfolder = IO.Directory.GetFiles(disabledpath)
+        For Each file In disabledfolder
+            file = file.Replace(disabledpath + "\", "")
+            file = file.Replace(".dll", "")
+            file = file.Trim
+            modsList.Items.Add("-" + file)
+        Next
+        disableddirfolder = IO.Directory.GetDirectories(disabledpath)
+        For Each directory In disableddirfolder
+            Dim topology As String() = IO.Directory.GetFiles(directory)
+            Dim filelist As String
+            For Each file In topology
+                Dim filename As String = file
+                filename = filename.Replace(disabledpath + "\", "")
+                filename = filename.Trim
+                filelist = filelist + filename + vbCrLf
+                If file.EndsWith(".dll") Then
+                    file = file.Replace(directory + "\", "")
+                    file = file.Replace(".dll", "")
+                    file = file.Trim
+                    file = "*" + file
+                    modsList.Items.Add("-" + file)
+                Else
+                    Continue For
+                End If
+            Next
+            Dim filelistarray As String()
+            If filelist = Nothing Then
+                Continue For
+            Else
+                filelistarray = filelist.Split(vbCrLf)
+            End If
+            Dim dllfound As Boolean = False
+            For Each file In filelistarray
+                If file.Contains(".dll") Then
+                    dllfound = True
+                End If
+            Next
+            If dllfound = False Then
+                Dim dirname As String = directory
+                dirname = directory.Replace(disabledpath + "\", "")
+                Dim nodename As String = "?" + dirname
+                If modsList.Items.Contains("-" + nodename) = False Then
+                    modsList.Items.Add("-" + nodename)
+                End If
+            End If
+        Next
+#End Region
     End Sub
 
     Private Sub modsList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles modsList.SelectedIndexChanged
         Button6.Enabled = True
         Button7.Enabled = True
         selected.Text = modsList.SelectedItem.ToString
+        If selected.Text.StartsWith("-") Then
+            disabledstatus.Text = "Disabled: True"
+            selected.Text = selected.Text.TrimStart("-")
+        Else
+            disabledstatus.Text = "Disabled: False"
+        End If
         ' try to locate file
         Dim path As String = lethalpath + "\BepInEx\plugins"
         Dim found As Boolean = False
@@ -199,6 +259,7 @@ Public Class Form1
         Else
             filetype.Text = "Type: Plugin"
         End If
+
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
