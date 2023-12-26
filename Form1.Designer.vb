@@ -35,6 +35,7 @@ Partial Class Form1
         basegame = New CheckBox()
         Panel1 = New Panel()
         Panel2 = New Panel()
+        Button3 = New Button()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
@@ -164,6 +165,7 @@ Partial Class Form1
         ' Panel1
         ' 
         Panel1.BackColor = Color.Black
+        Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Label3)
         Panel1.Controls.Add(Label2)
         Panel1.Controls.Add(Label4)
@@ -186,6 +188,19 @@ Partial Class Form1
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(255, 61)
         Panel2.TabIndex = 13
+        ' 
+        ' Button3
+        ' 
+        Button3.Enabled = False
+        Button3.FlatStyle = FlatStyle.System
+        Button3.Font = New Font("Cascadia Code", 14.25F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point, CByte(238))
+        Button3.Location = New Point(515, 15)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(273, 59)
+        Button3.TabIndex = 14
+        Button3.Text = "Install Modman"
+        Button3.UseVisualStyleBackColor = True
+        Button3.Visible = False
         ' 
         ' Form1
         ' 
@@ -231,4 +246,5 @@ Partial Class Form1
     Friend WithEvents basegame As CheckBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents Button3 As Button
 End Class

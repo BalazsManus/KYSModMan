@@ -8,6 +8,8 @@
             Return "Unity Data Folder"
         ElseIf foldname = "MonoBleedingEdge" Then
             Return "Mono Runtime"
+        ElseIf foldname = "KYSModMan" Then
+            Return "Modman"
         End If
     End Function
     Public Function detectfile(filname As String, path As String)
@@ -102,7 +104,7 @@
             Form1.bepininstaller.Enabled = True
         End If
     End Function
-    Public Function checkfolders(foldernames As String)
+    Public Function checkfolders(foldernames As String, modfoldvar As Boolean)
         ' convert string to array
         Dim foldernamesarray As String() = foldernames.Split(vbCrLf)
         Dim data As Boolean = False
@@ -119,6 +121,8 @@
                 data = True
             ElseIf foldername = "Mono Runtime" Then
                 mono = True
+            ElseIf foldername = "Modman" Then
+                modfoldvar = True
             End If
         Next
         If data = True AndAlso mono = True Then
