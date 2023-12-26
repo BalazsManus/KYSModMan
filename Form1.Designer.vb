@@ -199,11 +199,15 @@ Partial Class Form1
         Controls.Add(Button2)
         Controls.Add(Label1)
         Controls.Add(Button1)
+        DoubleBuffered = True
         Font = New Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(238))
         ForeColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
         FormBorderStyle = FormBorderStyle.FixedSingle
+        MaximizeBox = False
         Name = "Form1"
-        Text = "Simple lethal mod manager"
+        ShowIcon = False
+        SizeGripStyle = SizeGripStyle.Hide
+        Text = "KYSModMan: Simple Lethal Mod Manager"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()

@@ -78,7 +78,6 @@
             filename = filename.Trim()
             filename = filename.TrimStart()
             filename = filename.TrimEnd()
-            MessageBox.Show(filename)
             If filename = "Unity Doorstop" Then
                 doorstop = True
             End If
@@ -92,7 +91,6 @@
             foldername = foldername.Trim()
             foldername = foldername.TrimStart()
             foldername = foldername.TrimEnd()
-            MessageBox.Show(foldername)
             If foldername = "BepInEx" Then
                 bepinex = True
             End If
@@ -102,6 +100,34 @@
         Else
             Form1.bepininstaller.Visible = True
             Form1.bepininstaller.Enabled = True
+        End If
+    End Function
+    Public Function checkfolders(foldernames As String)
+        ' convert string to array
+        Dim foldernamesarray As String() = foldernames.Split(vbCrLf)
+        Dim data As Boolean = False
+        Dim mono As Boolean = False
+        For Each foldername In foldernamesarray
+            ' remove whitespace
+            ' i hate it whem array is buggy as hell
+            foldername = foldername.Replace(vbCrLf, "")
+            foldername = foldername.Trim()
+            foldername = foldername.TrimStart()
+            foldername = foldername.TrimEnd()
+            ' filename = filename.Busscut()
+            If foldername = "Unity Data Folder" Then
+                data = True
+            ElseIf foldername = "Mono Runtime" Then
+                mono = True
+            End If
+        Next
+        If data = True AndAlso mono = True Then
+            Return True
+        Else
+            Form1.Button1.Enabled = True
+            Form1.Button2.Enabled = True
+            MessageBox.Show("Couldn't find the base game folders, did you select the right folder?")
+            Return False
         End If
     End Function
 End Module
