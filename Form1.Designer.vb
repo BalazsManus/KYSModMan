@@ -33,30 +33,31 @@ Partial Class Form1
         Me.bepininstaller = New System.Windows.Forms.Button()
         Me.basegame = New System.Windows.Forms.CheckBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.modsList = New System.Windows.Forms.ListBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.selected = New System.Windows.Forms.Label()
-        Me.fileloc = New System.Windows.Forms.Label()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
+        Me.filetype = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.fileloc = New System.Windows.Forms.Label()
+        Me.selected = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.filetype = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -187,6 +188,25 @@ Partial Class Form1
         Me.Panel1.Size = New System.Drawing.Size(800, 84)
         Me.Panel1.TabIndex = 12
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(118, 10)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(13, 15)
+        Me.Label8.TabIndex = 16
+        Me.Label8.Text = "→"
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.KYSModMan.My.Resources.Resources.dfyz0yj_fd9b7f1a_4bec_40ea_a100_2470245723f4
+        Me.PictureBox2.Location = New System.Drawing.Point(59, 3)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(56, 53)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 15
+        Me.PictureBox2.TabStop = False
+        '
         'Button4
         '
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.System
@@ -210,6 +230,17 @@ Partial Class Form1
         Me.Button3.Text = "Install Modman"
         Me.Button3.UseVisualStyleBackColor = True
         Me.Button3.Visible = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox1.Image = Global.KYSModMan.My.Resources.Resources.Screenshot_2023_12_25_182152
+        Me.PictureBox1.Location = New System.Drawing.Point(133, -2)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(196, 83)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 5
+        Me.PictureBox1.TabStop = False
         '
         'Panel2
         '
@@ -252,6 +283,7 @@ Partial Class Form1
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel3.Controls.Add(Me.Button8)
         Me.Panel3.Controls.Add(Me.filetype)
         Me.Panel3.Controls.Add(Me.Label7)
         Me.Panel3.Controls.Add(Me.Button7)
@@ -263,31 +295,35 @@ Partial Class Form1
         Me.Panel3.Size = New System.Drawing.Size(315, 272)
         Me.Panel3.TabIndex = 1
         '
-        'selected
+        'filetype
         '
-        Me.selected.Location = New System.Drawing.Point(3, 0)
-        Me.selected.Name = "selected"
-        Me.selected.Size = New System.Drawing.Size(305, 57)
-        Me.selected.TabIndex = 0
-        Me.selected.Text = "Select an item"
+        Me.filetype.AutoSize = True
+        Me.filetype.Location = New System.Drawing.Point(25, 121)
+        Me.filetype.Name = "filetype"
+        Me.filetype.Size = New System.Drawing.Size(61, 15)
+        Me.filetype.TabIndex = 5
+        Me.filetype.Text = "Type: N/A"
         '
-        'fileloc
+        'Label7
         '
-        Me.fileloc.Location = New System.Drawing.Point(25, 57)
-        Me.fileloc.Name = "fileloc"
-        Me.fileloc.Size = New System.Drawing.Size(283, 64)
-        Me.fileloc.TabIndex = 1
-        Me.fileloc.Text = "Loc: N/A"
+        Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(70, Byte), Integer), CType(CType(70, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.Label7.Location = New System.Drawing.Point(3, 253)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(157, 15)
+        Me.Label7.TabIndex = 4
+        Me.Label7.Text = "Kill Yourself Mod Manager"
         '
-        'Button5
+        'Button7
         '
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button5.Location = New System.Drawing.Point(626, 86)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(162, 23)
-        Me.Button5.TabIndex = 15
-        Me.Button5.Text = "Install Mod (.zip)"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.Button7.Enabled = False
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Button7.Location = New System.Drawing.Point(3, 227)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(170, 23)
+        Me.Button7.TabIndex = 3
+        Me.Button7.Text = "Disable"
+        Me.Button7.UseVisualStyleBackColor = True
         '
         'Button6
         '
@@ -300,16 +336,31 @@ Partial Class Form1
         Me.Button6.Text = "Delete (Permanent)"
         Me.Button6.UseVisualStyleBackColor = True
         '
-        'Button7
+        'fileloc
         '
-        Me.Button7.Enabled = False
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button7.Location = New System.Drawing.Point(3, 227)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(170, 23)
-        Me.Button7.TabIndex = 3
-        Me.Button7.Text = "Disable"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.fileloc.Location = New System.Drawing.Point(25, 57)
+        Me.fileloc.Name = "fileloc"
+        Me.fileloc.Size = New System.Drawing.Size(283, 64)
+        Me.fileloc.TabIndex = 1
+        Me.fileloc.Text = "Loc: N/A"
+        '
+        'selected
+        '
+        Me.selected.Location = New System.Drawing.Point(3, 0)
+        Me.selected.Name = "selected"
+        Me.selected.Size = New System.Drawing.Size(305, 57)
+        Me.selected.TabIndex = 0
+        Me.selected.Text = "Select an item"
+        '
+        'Button5
+        '
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Button5.Location = New System.Drawing.Point(626, 86)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(162, 23)
+        Me.Button5.TabIndex = 15
+        Me.Button5.Text = "Install Mod (.zip)"
+        Me.Button5.UseVisualStyleBackColor = True
         '
         'Label6
         '
@@ -331,59 +382,20 @@ Partial Class Form1
         Me.Label5.TabIndex = 17
         Me.Label5.Text = "God forgive me for" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "this UI"
         '
-        'Label7
+        'Button8
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(70, Byte), Integer), CType(CType(70, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(3, 253)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(157, 15)
-        Me.Label7.TabIndex = 4
-        Me.Label7.Text = "Kill Yourself Mod Manager"
-        '
-        'filetype
-        '
-        Me.filetype.AutoSize = True
-        Me.filetype.Location = New System.Drawing.Point(25, 121)
-        Me.filetype.Name = "filetype"
-        Me.filetype.Size = New System.Drawing.Size(61, 15)
-        Me.filetype.TabIndex = 5
-        Me.filetype.Text = "Type: N/A"
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.KYSModMan.My.Resources.Resources.dfyz0yj_fd9b7f1a_4bec_40ea_a100_2470245723f4
-        Me.PictureBox2.Location = New System.Drawing.Point(59, 3)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(56, 53)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 15
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox1.Image = Global.KYSModMan.My.Resources.Resources.Screenshot_2023_12_25_182152
-        Me.PictureBox1.Location = New System.Drawing.Point(133, -2)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(196, 83)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 5
-        Me.PictureBox1.TabStop = False
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(118, 10)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(13, 15)
-        Me.Label8.TabIndex = 16
-        Me.Label8.Text = "→"
+        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Button8.Location = New System.Drawing.Point(3, 198)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(75, 23)
+        Me.Button8.TabIndex = 6
+        Me.Button8.Text = "Enable"
+        Me.Button8.UseVisualStyleBackColor = True
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(800, 519)
         Me.Controls.Add(Me.Label5)
@@ -408,13 +420,13 @@ Partial Class Form1
         Me.Text = "KYSModMan: Simple Lethal Mod Manager"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -449,4 +461,5 @@ Partial Class Form1
     Friend WithEvents filetype As Label
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents Button8 As Button
 End Class

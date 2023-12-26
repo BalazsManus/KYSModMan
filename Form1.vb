@@ -148,6 +148,7 @@ Public Class Form1
 
     Private Sub modsList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles modsList.SelectedIndexChanged
         Button6.Enabled = True
+        Button7.Enabled = True
         selected.Text = modsList.SelectedItem.ToString
         ' try to locate file
         Dim path As String = lethalpath + "\BepInEx\plugins"
@@ -194,6 +195,7 @@ Public Class Form1
             filetype.Text = "Type: Plugin in folder"
         ElseIf selected.Text.StartsWith("?") Then
             filetype.Text = "Type: Folder"
+            Button7.Enabled = False
         Else
             filetype.Text = "Type: Plugin"
         End If
@@ -243,6 +245,53 @@ Public Class Form1
             IO.Directory.Delete(foldername, True)
         End If
         Button6.Enabled = True
+        Button4.PerformClick()
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        Button7.Enabled = False
+        Dim modmanpath = lethalpath + "\KYSModMan\Disabled\"
+        Dim folderfix As Boolean = False
+        Dim nodllfix As Boolean = False
+        If selected.Text.StartsWith("*") Then
+            folderfix = True
+        End If
+        If selected.Text.StartsWith("?") Then
+            nodllfix = True
+        End If
+        Dim path As String = lethalpath + "\BepInEx\plugins"
+        If folderfix = False AndAlso nodllfix = False Then
+            IO.File.Move(path + "\" + selected.Text + ".dll", modmanpath + selected.Text + ".dll")
+            If IO.Directory.Exists(path + "\" + selected.Text) Then
+                IO.Directory.Move(path + "\" + selected.Text, modmanpath + selected.Text)
+            End If
+        ElseIf folderfix = True AndAlso nodllfix = False Then
+            For Each directory In pluginsdirfolder
+                Dim topology As String() = IO.Directory.GetFiles(directory)
+                For Each file In topology
+                    Dim fileorig As String = file
+                    fileorig = fileorig.Replace(directory, "")
+                    If file.EndsWith(".dll") Then
+                        Dim found As Boolean = False
+                        file = file.Replace(directory + "\", "")
+                        file = file.Replace(".dll", "")
+                        file = file.Trim
+                        If "*" + file = modsList.SelectedItem.ToString Then
+                            found = True
+                        End If
+                        If found = True Then
+                            Dim foldername As String = directory.Replace(path, "")
+                            IO.Directory.Move(directory, modmanpath + foldername)
+                        End If
+                    Else
+                        Continue For
+                    End If
+                Next
+            Next
+        ElseIf folderfix = False AndAlso nodllfix = True Then
+            MessageBox.Show("You can't disable folders without plugins.")
+        End If
+        Button7.Enabled = True
         Button4.PerformClick()
     End Sub
 End Class
