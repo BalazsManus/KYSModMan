@@ -1,8 +1,7 @@
 ﻿Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ' folder select dialog
+        MessageBox.Show("The original steam location will be used, you may have to click only ok.")
         Dim fbd As New FolderBrowserDialog
-        ' start folder
         fbd.SelectedPath = "C:\Program Files (x86)\Steam\steamapps\common\Lethal Company"
         If fbd.ShowDialog() = DialogResult.OK Then
             Dim folder As String = fbd.SelectedPath
@@ -10,28 +9,30 @@
             If folder.Contains("Lethal Company") Then
                 found = True
             Else
-                MessageBox.Show("Pls select Lethal Company named folder, if u don't hav it, then leav")
+                MessageBox.Show("Please open a folder named 'Lethal Company' or use Diff open.")
             End If
             If found = True Then
+                path.Text = folder
+                Button1.Enabled = False
+                Button2.Enabled = False
                 Dim files As String() = IO.Directory.GetFiles(folder)
+                Dim filenames As String
+                For Each filname In files
+                    filenames = filenames + Struct.detectfile(filname, folder) + vbCrLf
+                Next
+                MessageBox.Show(filenames)
+                Struct.checkfiles(filenames)
                 Dim folders As String() = IO.Directory.GetDirectories(folder)
-                Dim filepath As String = ""
-                Dim bepin As Boolean = False
-                For Each Dirc In folders
-                    If Dirc.Contains("BepInEx") Then
-                        bepin = True
-                    End If
-                    filepath = filepath + vbCrLf + Dirc.ToString
+                Dim foldnames As String
+                For Each foldname In folders
+                    foldnames = foldnames + Struct.detectfolder(foldname, folder) + vbCrLf
                 Next
-                For Each file As String In files
-                    filepath = filepath + vbCrLf + file.ToString
-                Next
-                If bepin = True Then
-                    BepInExStatus.Checked = True
-                Else
-                    BepInExStatus.Checked = False
-                End If
+                Struct.bepinexdetect(filenames, foldnames)
             End If
         End If
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        MessageBox.Show("Diff open is used if the folder name differs from the original.")
     End Sub
 End Class
